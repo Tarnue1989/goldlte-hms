@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – Gold LTE Hospital</title>
+  <link id="faviconTag" rel="icon" href="/assets/logos/logo.png" type="image/png" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background-color: #f3f4f6;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .layout {
+      max-width: 400px;
+      width: 100%;
+      padding: 1rem;
+    }
+    .login-container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .login-container img {
+      width: 96px;
+      margin: 0 auto 1rem;
+      display: block;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+    .login-container h2 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #555;
+    }
+    .flex-between a {
+      color: #1d4ed8;
+      text-decoration: none;
+    }
+    .flex-between a:hover {
+      text-decoration: underline;
+    }
+    button {
+      background-color: #1e3a8a;
+      color: white;
+      width: 100%;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 6px;
+      margin-top: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e40af;
+    }
+    .note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 1.5rem;
+    }
+    .note a {
+      color: #1d4ed8;
+      text-decoration: none;
+    }
+    .note a:hover {
+      text-decoration: underline;
+    }
+    #errorMsg {
+      color: red;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      display: none;
+    }
+    #passwordResetFields {
+      display: none;
+      margin-top: 2rem;
+      border-top: 1px solid #ccc;
+      padding-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="login-container">
+      <a href="/">
+        <img id="dynamicLogo" src="/assets/logos/logo.png" alt="Logo" />
+      </a>
+      <h2>Sign In to Your Account</h2>
+
+      <!-- Login Form -->
+      <form id="loginForm">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Password" required />
+        </div>
+
+        <div class="flex-between">
+          <label><input type="checkbox" id="rememberMe" /> Remember Me</label>
+          <a href="/forgot-password.html">Forgot Password?</a>
+        </div>
+
+        <button type="submit">Sign In</button>
+        <p id="errorMsg"></p>
+      </form>
+
+      <!-- Password Reset (shown only if required) -->
+      <form id="resetPasswordForm" style="display: none;">
+        <div id="passwordResetFields">
+          <h3 style="margin-bottom: 1rem; font-size: 1rem;">Reset Your Password</h3>
+          <div class="form-group">
+            <input type="password" id="newPassword" placeholder="New Password" required />
+          </div>
+          <div class="form-group">
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+          </div>
+          <button type="submit">Update Password</button>
+        </div>
+      </form>
+
+      <p class="note">Don’t have an account? <a href="/create-account.html">Create one</a></p>
+    </div>
+  </div>
+
+  <script src="/js/login.js" defer></script>
+  <script src="/js/dynamic-logo.js" defer></script>
+</body>
+</html>

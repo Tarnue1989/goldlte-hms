@@ -1,0 +1,237 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: #f3f4f6;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+
+h2, h3 {
+  color: #1e3a8a;
+  text-align: center;
+}
+
+.form-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  display: none;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: #888;
+}
+
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+button {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-submit { background: #1e3a8a; color: white; }
+.btn-submit:hover { background: #233e93; }
+
+.btn-cancel { background: #6b7280; color: white; }
+.btn-cancel:hover { background: #4b5563; }
+
+.add-btn-desktop {
+  background: #1e3a8a;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: bold;
+  display: none;
+  margin-bottom: 1rem;
+}
+.add-btn-desktop:hover {
+  background: #233e93;
+}
+
+.search-container {
+  margin-top: 1rem;
+  text-align: right;
+}
+.search-container input {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px;
+}
+
+.table-container {
+  overflow-x: auto;
+  display: none;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+th, td {
+  padding: 0.75rem;
+  min-width: 120px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+thead {
+  background: #1e3a8a;
+  color: white;
+}
+.actions-table button {
+  margin-right: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  border: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.edit, .btn-edit { background: #2563eb; color: white; }
+.delete, .btn-delete { background: #dc2626; color: white; }
+
+.card-list {
+  display: block;
+}
+.record-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.record-card p {
+  margin: 0.25rem 0;
+}
+.card-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.card-actions button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #1e3a8a;
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  display: none;
+}
+.floating-btn:active {
+  cursor: grabbing;
+}
+
+/* Sidebar highlight for active page */
+.sidebar-item.active {
+  background-color: #1e3a8a;
+  color: white !important;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .form-container { display: none; }
+  .card-list { display: block; }
+  .table-container { display: none; }
+  .floating-btn { display: flex; }
+}
+
+/* Desktop layout */
+@media (min-width: 769px) {
+  .table-container { display: block; }
+  .card-list { display: none; }
+  .add-btn-desktop { display: inline-block; }
+}
+
+/* Optional - align checkbox text */
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 120px);
+  background: #f9fafb;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #111;
+  color: white;
+  padding: 1rem;
+  height: 100%;
+  position: sticky;
+  top: 60px;
+}
+
+.mobile-sidebar {
+  display: none;
+  flex-direction: column;
+  background-color: #111;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 1000;
+}
+.mobile-sidebar.open {
+  display: flex !important;
+}
+
+main.content {
+  flex: 1;
+  padding: 2rem;
+}
+

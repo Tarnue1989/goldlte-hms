@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employees – GoldLTE Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f4f6;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    body.hidden { display: none; }
+
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1rem;
+    }
+
+    .header-left i {
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .top-nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .top-nav select {
+      padding: 0.25rem;
+      border-radius: 4px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem 1rem;
+      width: 100%;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      display: none;
+    }
+
+    h2 {
+      text-align: center;
+      color: #1e3a8a;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    input, select, input[type="file"], textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    input[type="file"] {
+      height: 45px;
+      background-color: white;
+      color: #333;
+      cursor: pointer;
+    }
+
+    select[name="gender"] {
+      height: 45px;
+    }
+
+    input::placeholder { color: #888; }
+
+    label.date-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    small.preview-note {
+      color: #555;
+      font-size: 0.85rem;
+      margin-top: -0.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .actions {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-submit {
+      background: #1e3a8a;
+      color: white;
+    }
+
+    .btn-submit:hover { background: #233e93; }
+
+    .btn-cancel {
+      background: #6b7280;
+      color: white;
+    }
+
+    .btn-cancel:hover { background: #4b5563; }
+
+    .add-btn-desktop {
+      background: #1e3a8a;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: bold;
+      display: none;
+      margin-bottom: 1rem;
+    }
+
+    .search-container {
+      margin-top: 1rem;
+      text-align: right;
+    }
+
+    .search-container input {
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      display: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      min-width: 120px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    thead {
+      background: #1e3a8a;
+      color: white;
+    }
+
+    .actions-table button {
+      margin-right: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      border: none;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .edit { background: #2563eb; color: white; }
+    .delete { background: #dc2626; color: white; }
+
+    .card-list { display: block; }
+
+    .record-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .record-card p { margin: 0.25rem 0; }
+
+    .card-actions {
+      margin-top: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .card-actions button {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .btn-edit { background: #2563eb; color: white; }
+    .btn-delete { background: #dc2626; color: white; }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #1e3a8a;
+      color: white;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+      display: none;
+    }
+
+    .floating-btn:active { cursor: grabbing; }
+
+    @media (max-width: 768px) {
+      .form-container { display: none; }
+      .card-list { display: block; }
+      .table-container { display: none; }
+      .floating-btn { display: flex; }
+    }
+
+    @media (min-width: 769px) {
+      .table-container { display: block; }
+      .card-list { display: none; }
+      .add-btn-desktop { display: inline-block; }
+    }
+  </style>
+</head>
+<body class="hidden">
+  <div class="layout" style="max-width: 1100px; margin: 0 auto; padding: 0 1rem; flex: 1; display: flex; flex-direction: column; width: 100%;">
+    <header>
+      <div class="header-left">
+        <i class="fas fa-user-md"></i>
+        <span>Employees</span>
+      </div>
+      <div class="top-nav">
+        <a href="/admin/dashboard.html"><i class="fas fa-arrow-left"></i> Dashboard</a>
+        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <select>
+          <option>EN</option>
+          <option>FR</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="container">
+        <button id="desktopAddBtn" class="add-btn-desktop">+ Add Employee</button>
+
+        <div class="form-container" id="formContainer">
+          <h2>Add New Employee</h2>
+          <form id="addEmployeeForm" enctype="multipart/form-data">
+            <div class="form-grid">
+              <input type="hidden" name="id" id="employeeId" />
+              <input type="text" name="prefix" placeholder="Prefix (e.g. Dr., Mr.)" />
+              <input type="text" name="first_name" placeholder="First Name" required />
+              <input type="text" name="middle_name" placeholder="Middle Name (Optional)" />
+              <input type="text" name="last_name" placeholder="Last Name" required />
+              <input type="email" name="email" placeholder="Email" />
+              <input type="text" name="phone" placeholder="Phone Number" />
+              <select name="gender">
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+              <div>
+                <label class="date-label">Date of Birth</label>
+                <input type="date" name="date_of_birth" />
+              </div>
+              <input type="text" name="address" placeholder="Address" />
+              <input type="text" name="emergency_contact_name" placeholder="Emergency Contact Name" />
+              <input type="text" name="emergency_contact_phone" placeholder="Emergency Contact Phone" />
+              <select name="role_id" id="roleSelect"><option value="">Select Role</option></select>
+              <select name="department_id" id="departmentSelect"><option value="">Select Department</option></select>
+              <select name="employment_status">
+                <option value="">Employment Status</option>
+                <option>Active</option>
+                <option>On Leave</option>
+                <option>Terminated</option>
+              </select>
+              <input type="text" name="position_title" placeholder="Position Title" />
+              <div>
+                <label class="date-label">Start Date</label>
+                <input type="date" name="start_date" />
+              </div>
+              <div>
+                <label class="date-label">End Date</label>
+                <input type="date" name="end_date" />
+              </div>
+              <div>
+                <label class="date-label" for="profile_picture">Upload Profile Picture</label>
+                <input type="file" name="profile_picture" id="profile_picture" />
+                <small id="profilePreview" class="preview-note"></small>
+              </div>
+              <div>
+                <label class="date-label" for="resume_url">Upload Resume (PDF, DOC)</label>
+                <input type="file" name="resume_url" id="resume_url" accept=".pdf,.doc,.docx" />
+                <small id="resumePreview" class="preview-note"></small>
+              </div>
+              <textarea name="bio" placeholder="Short bio or notes" rows="4" style="grid-column: 1 / -1;"></textarea>
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn-submit">Submit</button>
+              <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search employees...">
+        </div>
+
+        <div class="table-container">
+          <h3 style="text-align:center; color:#1e3a8a;">Employee Records</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th><th>Email</th><th>Role</th><th>Department</th><th>Status</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="employeeTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="card-list" id="employee-cards"></div>
+      </div>
+    </main>
+    <footer>
+      Gold LTE Hospital Admin Portal © 2025<br>
+      1234 Wellness Ave, Healthy City | support@goldlte.com | +1 (555) 123-4567
+    </footer>
+  </div>
+
+  <div id="floatingAddBtn" class="floating-btn">+</div>
+
+  <script src="/js/logout.js" defer></script>
+  <script src="/js/session.js" defer></script>
+  <script src="/js/employees.js" defer></script>
+  <script src="/js/authRefresh.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+.header, .footer {
+  background: #003366;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.right-items {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sidebar {
+  width: 200px;
+  background: #111;
+  padding: 1rem;
+  color: white;
+}
+
+.layout {
+  display: flex;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-sidebar {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .hamburger { display: inline; }
+  .mobile-sidebar {
+    display: block;
+    background: #111;
+    padding: 1rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 👇 Updated form styles */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* 👇 Upload field area with labels */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+input[type="file"] {
+  padding: 4px;
+  font-size: 0.85rem;
+  max-width: 240px;
+}
+
+/* 👇 Align Position/Department like Full Name */
+input#position,
+select#department_id {
+  height: 36px;
+}
+
+/* 👇 Buttons */
+.button-group {
+  grid-column: span 2;
+  display: flex;
+  gap: 1rem;
+}
+
+.button-group button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #003366;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* 👇 Search box style */
+.search-section {
+  margin-bottom: 1rem;
+}
+
+.search-section input {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* 👇 Table styles */
+table {
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+/* 👇 Card view (for mobile) */
+.card-list .card {
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.05);
+}
+
+/* 👇 Footer fix for bottom */
+.footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+}

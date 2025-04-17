@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gold LTE Hospital - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link id="faviconTag" rel="icon" href="/assets/logos/logo.png" type="image/png" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f2f2;
+      color: #333;
+      line-height: 1.5;
+    }
+    .page-container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+
+    .navbar {
+      background-color: #003366;
+      color: white;
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .left, .navbar .right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .navbar .logo-img {
+      height: 35px;
+      margin-right: 0.5rem;
+    }
+
+    .logo { font-size: 1.2rem; font-weight: bold; }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #003366;
+      padding: 1rem;
+    }
+
+    .mobile-menu a {
+      margin-bottom: 0.5rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .hero-container {
+      position: relative;
+      height: 400px;
+      margin: 1.5rem 0;
+      border-radius: 0px;
+      overflow: hidden;
+    }
+
+    .hero-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 6px;
+      font-size: 1.2rem;
+    }
+
+    .content-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      flex: 1 1 calc(33% - 1rem);
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      min-width: 280px;
+    }
+
+    .card h2 {
+      color: #003366;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .announcement-list {
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .announcement-item {
+      background-color: #eef5ff;
+      padding: 0.75rem;
+      margin-bottom: 0.6rem;
+      border-radius: 6px;
+      border-left: 5px solid #007bff;
+    }
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;  /* 🔥 Add margin to separate from above */
+      margin-bottom: 2rem; /* Optional: add spacing below too */
+    }
+
+
+    .video-tile {
+      flex: 1 1 320px;
+      max-width: 100%;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .video-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #003366;
+      padding: 0.75rem 1rem 0.5rem;
+      background-color: #f9f9f9;
+    }
+
+
+
+    .video-section {
+      margin: 2rem 0;
+    }
+
+    .video-section h2 {
+      color: #003366;
+      margin-bottom: 1rem;
+    }
+
+    .video-tile iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .location-item {
+      background-color: #eef9f2;
+      padding: 0.75rem;
+      margin-bottom: 0.6rem;
+      border-radius: 6px;
+      border-left: 5px solid #16a34a;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      border-radius: 0px; /* 👈 Square corners */
+      margin: 2rem 0;
+    }
+
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .mobile-menu.show { display: flex; }
+      .hero-text { font-size: 1rem; bottom: 0.8rem; left: 0.8rem; }
+      .card { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="left">
+        <a href="/"><img id="siteLogo" src="/assets/logos/logo.png" alt="Logo" class="logo-img" /></a>
+        <span class="logo">Gold LTE Hospital</span>
+        <div class="nav-links" id="desktopLinks">
+          <a href="#services">Services</a>
+          <a href="#announcements">Announcements</a>
+          <a href="#about">About</a>
+          <a href="#videos">Videos</a>
+          <a href="#locations">Locations</a>
+        </div>
+      </div>
+      <div class="right">
+        <a href="/login.html" style="color: white;">Login</a>
+        <select id="lang">
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+        </select>
+        <span class="hamburger" id="mobileToggle"><i class="fas fa-bars"></i></span>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#services">Services</a>
+      <a href="#announcements">Announcements</a>
+      <a href="#about">About</a>
+      <a href="#videos">Videos</a>
+      <a href="#locations">Locations</a>
+      <a href="/login.html">Login</a>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero-container" id="slideContainer"></div>
+
+    <!-- Content Cards -->
+    <div class="content-grid">
+      <div class="card" id="services">
+        <h2><i class="fas fa-stethoscope"></i> Services</h2>
+        <div id="serviceList"></div>
+      </div>
+      
+      <div class="card" id="announcements">
+        <h2><i class="fas fa-bullhorn"></i> Announcements</h2>
+        <div class="announcement-list" id="announcementList"></div>
+      </div>
+
+      <div class="card" id="about">
+        <h2><i class="fas fa-hospital"></i> About Us</h2>
+        <p id="aboutContent">Loading...</p>
+      </div>
+
+      <div class="card" id="locations">
+        <h2><i class="fas fa-map-marker-alt"></i> Our Locations</h2>
+        <div id="locationList"></div>
+      </div>
+    </div>
+
+    <!-- Video -->
+    <section id="videos" class="video-section">
+      <h2><i class="fas fa-video"></i> Intro Videos</h2>
+      <div class="video-grid" id="videoContainer"></div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer id="footerContact">
+      Loading footer...
+    </footer>
+  </div>
+
+  <script src="/js/index-content.js" defer></script>
+</body>
+</html>
