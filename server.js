@@ -7,7 +7,7 @@ const app = require('./app');
 const { sequelize } = require('./models');
 const homeContentRoutes = require('./routes');
 
-// 🌐 Get local IP
+// 🌐 Get local IP (used only for logging/debug)
 const getLocalIP = () => {
   const interfaces = os.networkInterfaces();
   for (const name of Object.keys(interfaces)) {
@@ -20,7 +20,7 @@ const getLocalIP = () => {
   return '0.0.0.0';
 };
 
-const HOST = 'localhost';
+const HOST = '0.0.0.0'; // ✅ This is required for Render
 const PORT = process.env.PORT || 3000;
 const FORCE_SYNC = process.env.FORCE_SYNC === 'true';
 
@@ -39,9 +39,9 @@ const FORCE_SYNC = process.env.FORCE_SYNC === 'true';
     // ✅ Mount APIs
     app.use('/api', homeContentRoutes);
 
-    // 🚀 Start HTTP Server
+    // 🚀 Start HTTP Server (on 0.0.0.0)
     http.createServer(app).listen(PORT, HOST, () => {
-      console.log(`🚀 HTTP server running at http://${HOST}:${PORT}`);
+      console.log(`🚀 HTTP server running at http://${getLocalIP()}:${PORT}`);
     });
 
   } catch (err) {
