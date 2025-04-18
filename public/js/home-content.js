@@ -1,4 +1,6 @@
-const BASE_URL = window.location.origin;
+// ✅ Set backend API base URL manually
+const BASE_URL = 'https://goldlte-hms.onrender.com';
+
 const token = localStorage.getItem('token');
 const headers = { Authorization: `Bearer ${token}` };
 const langSelect = document.getElementById('langSelect');
